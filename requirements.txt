@@ -1,0 +1,2 @@
+cairocffi==0.8.0
+Shapely==1.6.0
