@@ -1,5 +1,6 @@
 import cairocffi as cairo
 from shapely.geometry import polygon, linestring
+from linepolygon import LinePolygon
 
 mm_in_an_inch = 25.4
 pdf_inch = 72  # Standard "pixels" per inch in cairo is 72. Changing the scale later will correct this.
@@ -14,11 +15,13 @@ ctx = cairo.Context(surface)
 
 ctx.scale(pdf_inch / mm_in_an_inch, pdf_inch / mm_in_an_inch)  # Normalizing the canvas so that units are in mm
 
-ctx.set_source_rgb(0, 0, 0)
-ctx.set_line_width(1)
-ctx.move_to(0, 0)
-ctx.line_to(canvas_size_width, canvas_size_height)
-ctx.stroke()
+lp = LinePolygon()
+lp.set_position(20,20)
+lp.draw_lines(ctx)
+lp.set_position(40,20)
+lp.draw_polygons(ctx)
+lp.set_position(60,20)
+lp.draw_labels(ctx)
 
 surface.flush()
 surface.finish()
