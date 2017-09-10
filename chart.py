@@ -1,6 +1,7 @@
 import cairocffi as cairo
 from shapely.geometry import polygon, linestring
 from linepolygon import LinePolygon
+from pointtargets import PointTargets
 
 mm_in_an_inch = 25.4
 pdf_inch = 72  # Standard "pixels" per inch in cairo is 72. Changing the scale later will correct this.
@@ -22,6 +23,14 @@ lp.set_position(40,20)
 lp.draw_polygons(ctx)
 lp.set_position(60,20)
 lp.draw_labels(ctx)
+
+pt = PointTargets()
+pt.set_position(80,20)
+pt.draw_squares(ctx)
+pt.set_position(85,20)
+pt.draw_circles(ctx)
+pt.set_position(90,20)
+pt.draw_labels(ctx)
 
 surface.flush()
 surface.finish()
